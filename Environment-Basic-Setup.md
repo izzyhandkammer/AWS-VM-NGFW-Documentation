@@ -58,7 +58,7 @@ This is the equivalent to an Azure VNet.
 ## Checklist
 - One VPC
 - Three subnets in the same AZ
-- One internet Gateway attatched
+- One internet Gateway attached
 - Management and Untrust subnets point to IGW
 - Trust subnets have NO routes yet
 
