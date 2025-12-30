@@ -50,11 +50,3 @@ When you're configuring the plugin through Panorama you don't need to manually e
 3. Type: Dynamic
 4. Add match criteria and (if your poll interval has passed) you can see the tags from AWS populate ![DAGCreation.png](Assets/DAGCreation.png)
 5. Now we can make policies based on tags, VPC IDs, Subnet IDs, etc and enforce them as soon as the server gets spun up!
-
-# Auto tagging with threats
-If you want to test the **Threat** engine specifically but safely, you can pick a very common, low-risk signature (like a ping) and tell the firewall to treat it as a "Threat" for just one rule.
-
-1. Objects > Security Profiles > Vulnerability Protection: Create a new profile.
-2. Exceptions: Search for a basic ICMP (Ping) signature ID and change its action to **Alert**.
-3. Policy: Attach this profile to your "Allow" rule.
-4. Test: Ping the firewall. It will generate a "Threat" log for the ping, which your Log Forwarding Profile will then use to trigger the auto-tagging.
