@@ -1,8 +1,6 @@
 # Implementing IAM Policy
 We created a policy to define permissions for the firewall to read EC2 instances' tags but we never implemented it.
 
-What is an IAM role/policy?
-
 1. Verify that you made the policy in the IAM Dashboard
 2. Create the IAM role
 	1. In the dashboard click Roles → Create role
@@ -15,7 +13,7 @@ What is an IAM role/policy?
 	2. Actions → Security → Modify IAM role
 	3. Select the role from the dropdown and update
 
-# Enabling the AWS Plugin REDO INTRO
+# Enabling the AWS Plugin
 To implement DAGs we need to turn the firewall into an "AWS reader". It's going to continuously poll the AWS environment asking questions like "who has the tag 'Role:WebServer'?" and updates the security policies in real time.
 
 1. Go to Device → VM-Series. You should see an "AWS CloudWatch Setup" widget. 
@@ -33,7 +31,9 @@ We need a victim instance on the VPC that has a tag
 | ---- | --------------- |
 | Name | Test-Web-Server |
 | Role | Web-Server      |
+
 But if you want you can get super granular with these to make your policies specific. For example you could have a key-value pair `ExternalAccessAllowed:True` or `location:NAM`
+
 5. Launch the server
 
 # Configuring the Plugin
@@ -54,10 +54,7 @@ When you're configuring the plugin through Panorama you don't need to manually e
 # Auto tagging with threats
 If you want to test the **Threat** engine specifically but safely, you can pick a very common, low-risk signature (like a ping) and tell the firewall to treat it as a "Threat" for just one rule.
 
-1. **Objects > Security Profiles > Vulnerability Protection:** Create a new profile.
-    
-2. **Exceptions:** Search for a basic ICMP (Ping) signature ID and change its action to **Alert**.
-    
-3. **Policy:** Attach this profile to your "Allow" rule.
-    
-4. **Test:** Ping the firewall. It will generate a "Threat" log for the ping, which your Log Forwarding Profile will then use to trigger the auto-tagging.
+1. Objects > Security Profiles > Vulnerability Protection: Create a new profile.
+2. Exceptions: Search for a basic ICMP (Ping) signature ID and change its action to **Alert**.
+3. Policy: Attach this profile to your "Allow" rule.
+4. Test: Ping the firewall. It will generate a "Threat" log for the ping, which your Log Forwarding Profile will then use to trigger the auto-tagging.
