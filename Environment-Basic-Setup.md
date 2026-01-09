@@ -1,3 +1,8 @@
+# Notes on Accessing After Setup
+- I could not access my management console with global protect enabled
+- The IP assignment for the security groups is not dynamic - you need to change from "Custom" to "My IP" before each connection attempt
+- I could not access over the corp network
+
 # Setup and Prerequisites
 - Request an AWS account through qtorque
 ## First Steps:
